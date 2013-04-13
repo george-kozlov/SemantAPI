@@ -8,7 +8,7 @@ Both applications are written on C# and based on Microsoft' .Net framework 3.5 p
 As result application generates regular CSV file with the two columns per selected service.
 "Sentiment score" column contains float sentiment value provided by the target service that can be used for precise sentiment analysis if necessarry.
 In oposite "Sentiment polarity" value contains verbal representation of the sentiment score that is easy to read and understand for humans.
-Current version of SemantAPI.Robot application supports following NALP solutions:
+Current version of SemantAPI.Robot application supports following NLP solutions:
 - [Semantria](https://semantria.com). Modern, fast-growing NLP solution based on [Lexalytics’ Salience](http://www.lexalytics.com/technical-info/salience-engine-for-text-analysis) engine.
 - [AlchemyAPI](http://www.alchemyapi.com). Seems on of the world's most popular NLP solution.
 - [Chatterbox](http://chatterbox.co). The social technology engine that uses machine learning for sentiment analysis.
