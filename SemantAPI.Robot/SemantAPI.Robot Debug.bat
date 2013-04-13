@@ -1,0 +1,1 @@
+SemantAPI.Robot.exe -debug

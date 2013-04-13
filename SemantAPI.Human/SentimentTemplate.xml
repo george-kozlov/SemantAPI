@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<QuestionForm xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd">
+	<Question>
+		<QuestionIdentifier>An ID</QuestionIdentifier>
+		<QuestionContent>
+			<Text>A question</Text>
+		</QuestionContent>
+		<AnswerSpecification>
+			<SelectionAnswer>
+				<MinSelectionCount>1</MinSelectionCount>
+				<MaxSelectionCount>1</MaxSelectionCount>
+				<StyleSuggestion>radiobutton</StyleSuggestion>
+				<Selections>
+					<Selection>
+						<SelectionIdentifier>negative</SelectionIdentifier>
+						<Text>Negative</Text>
+					</Selection>
+					<Selection>
+						<SelectionIdentifier>neutral</SelectionIdentifier>
+						<Text>Neutral</Text>
+					</Selection>
+					<Selection>
+						<SelectionIdentifier>positive</SelectionIdentifier>
+						<Text>Positive</Text>
+					</Selection>
+				</Selections>
+			</SelectionAnswer>
+		</AnswerSpecification>
+	</Question>
+</QuestionForm>

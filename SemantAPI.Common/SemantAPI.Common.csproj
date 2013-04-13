@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5377EB13-7142-4BD6-A4A1-9594C563FE3D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SemantAPI.Common</RootNamespace>
+    <AssemblyName>SemantAPI.Common</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\BenchmarkHelper.cs" />
+    <Compile Include="Common\ExecutionContext.cs" />
+    <Compile Include="Common\LocaleHelper.cs" />
+    <Compile Include="Common\ResultSet.cs" />
+    <Compile Include="Executors\AlchemyExecutor.cs" />
+    <Compile Include="Executors\BitextExecutor.cs" />
+    <Compile Include="Executors\ChatterboxExecutor.cs" />
+    <Compile Include="Executors\IExecutor.cs" />
+    <Compile Include="Executors\MechanicalTurkExecutor.cs" />
+    <Compile Include="Executors\SemantriaExecutor.cs" />
+    <Compile Include="Executors\ViralheatExecutor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Alchemy\Alchemy.csproj">
+      <Project>{f232ba14-5fc3-4565-9072-5b333d0c9963}</Project>
+      <Name>Alchemy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Amazon.WebServices.MechanicalTurk.Domain\Amazon.WebServices.MechanicalTurk.Domain.csproj">
+      <Project>{f260f434-6789-4e55-8548-e9f477e8a0e5}</Project>
+      <Name>Amazon.WebServices.MechanicalTurk.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Amazon.WebServices.MechanicalTurk\Amazon.WebServices.MechanicalTurk.csproj">
+      <Project>{41a1da7c-40c1-4d44-9cb8-b6827e28bcc3}</Project>
+      <Name>Amazon.WebServices.MechanicalTurk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Semantria\Semantria.Com.csproj">
+      <Project>{e942ab83-da93-4b16-a826-ff3993b47329}</Project>
+      <Name>Semantria.Com</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

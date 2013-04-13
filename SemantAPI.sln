@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semantria.Com", "Semantria\Semantria.Com.csproj", "{E942AB83-DA93-4B16-A826-FF3993B47329}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alchemy", "Alchemy\Alchemy.csproj", "{F232BA14-5FC3-4565-9072-5B333D0C9963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemantAPI.Common", "SemantAPI.Common\SemantAPI.Common.csproj", "{5377EB13-7142-4BD6-A4A1-9594C563FE3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemantAPI.Robot", "SemantAPI.Robot\SemantAPI.Robot.csproj", "{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.WebServices.MechanicalTurk", "Amazon.WebServices.MechanicalTurk\Amazon.WebServices.MechanicalTurk.csproj", "{41A1DA7C-40C1-4D44-9CB8-B6827E28BCC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amazon.WebServices.MechanicalTurk.Domain", "Amazon.WebServices.MechanicalTurk.Domain\Amazon.WebServices.MechanicalTurk.Domain.csproj", "{F260F434-6789-4E55-8548-E9F477E8A0E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemantAPI.Human", "SemantAPI.Human\SemantAPI.Human.csproj", "{4486B2F7-D7A0-4435-8168-9E2050011673}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E942AB83-DA93-4B16-A826-FF3993B47329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E942AB83-DA93-4B16-A826-FF3993B47329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E942AB83-DA93-4B16-A826-FF3993B47329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E942AB83-DA93-4B16-A826-FF3993B47329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F232BA14-5FC3-4565-9072-5B333D0C9963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F232BA14-5FC3-4565-9072-5B333D0C9963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F232BA14-5FC3-4565-9072-5B333D0C9963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F232BA14-5FC3-4565-9072-5B333D0C9963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5377EB13-7142-4BD6-A4A1-9594C563FE3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5377EB13-7142-4BD6-A4A1-9594C563FE3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5377EB13-7142-4BD6-A4A1-9594C563FE3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5377EB13-7142-4BD6-A4A1-9594C563FE3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A1DA7C-40C1-4D44-9CB8-B6827E28BCC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A1DA7C-40C1-4D44-9CB8-B6827E28BCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A1DA7C-40C1-4D44-9CB8-B6827E28BCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A1DA7C-40C1-4D44-9CB8-B6827E28BCC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F260F434-6789-4E55-8548-E9F477E8A0E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F260F434-6789-4E55-8548-E9F477E8A0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F260F434-6789-4E55-8548-E9F477E8A0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F260F434-6789-4E55-8548-E9F477E8A0E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4486B2F7-D7A0-4435-8168-9E2050011673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4486B2F7-D7A0-4435-8168-9E2050011673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4486B2F7-D7A0-4435-8168-9E2050011673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4486B2F7-D7A0-4435-8168-9E2050011673}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
