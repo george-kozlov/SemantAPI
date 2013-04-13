@@ -23,4 +23,4 @@ Out of the box the tool requests analysis of each document 3 times and finally c
 "MechanicalTurk Score" column represents a confidence score related to the provided "Sentiment Polarity".
 So, if two people said that sentiment is negative but one person said positive, tool will return Negative "Sentiment Polarity" with 0.67(2/3) confidence score. 
 
-   * I'm not sure about accuracy, but their API is the worst among the integrated.
+   \* I'm not sure about accuracy, but their API is the worst among the integrated.
