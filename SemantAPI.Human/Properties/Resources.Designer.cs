@@ -63,9 +63,9 @@ namespace SemantAPI.Human.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _13thParish_medium {
+        internal static System.Drawing.Bitmap about_logo {
             get {
-                object obj = ResourceManager.GetObject("_13thParish_medium", resourceCulture);
+                object obj = ResourceManager.GetObject("about_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

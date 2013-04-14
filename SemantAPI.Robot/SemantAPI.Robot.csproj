@@ -95,6 +95,7 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="Resources\13thParish_medium.png" />
+    <None Include="Resources\about_logo.png" />
     <Content Include="Resources\icon.ico" />
     <Content Include="Resources\main_logo.png.png" />
   </ItemGroup>

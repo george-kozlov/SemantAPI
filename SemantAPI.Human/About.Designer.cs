@@ -38,17 +38,17 @@
 			// 
 			// pictureBox1
 			// 
-			this.pictureBox1.Image = global::SemantAPI.Human.Properties.Resources._13thParish_medium;
+			this.pictureBox1.Image = global::SemantAPI.Human.Properties.Resources.about_logo;
 			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(400, 250);
+			this.pictureBox1.Size = new System.Drawing.Size(300, 260);
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(66, 280);
+			this.label1.Location = new System.Drawing.Point(18, 280);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(293, 13);
 			this.label1.TabIndex = 1;
@@ -57,7 +57,7 @@
 			// llEmail
 			// 
 			this.llEmail.AutoSize = true;
-			this.llEmail.Location = new System.Drawing.Point(207, 280);
+			this.llEmail.Location = new System.Drawing.Point(159, 280);
 			this.llEmail.Name = "llEmail";
 			this.llEmail.Size = new System.Drawing.Size(143, 13);
 			this.llEmail.TabIndex = 2;
@@ -68,18 +68,18 @@
 			// lVersion
 			// 
 			this.lVersion.AutoSize = true;
-			this.lVersion.Location = new System.Drawing.Point(275, 12);
+			this.lVersion.Location = new System.Drawing.Point(210, 20);
 			this.lVersion.Name = "lVersion";
 			this.lVersion.Size = new System.Drawing.Size(84, 13);
 			this.lVersion.TabIndex = 3;
-			this.lVersion.Text = "Version 1.0.1.67";
+			this.lVersion.Text = "Version 1.0.1.69";
 			// 
 			// About
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
-			this.ClientSize = new System.Drawing.Size(424, 302);
+			this.ClientSize = new System.Drawing.Size(324, 302);
 			this.Controls.Add(this.lVersion);
 			this.Controls.Add(this.llEmail);
 			this.Controls.Add(this.label1);
