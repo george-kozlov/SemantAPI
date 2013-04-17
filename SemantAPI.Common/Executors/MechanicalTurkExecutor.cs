@@ -6,6 +6,7 @@
 // <summary>MechanicalTurkSettings and MechanicalTurkExecutor classes</summary>
 
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -115,7 +116,16 @@ namespace SemantAPI.Common.Executors
 
 				QuestionFormAnswers answer = QuestionUtil.DeserializeQuestionFormAnswers(assmnt.Answer);
 				if (answer != null)
-					result.Add(answer.Answer.First().Items.First());
+				{
+					if (answer.Answer != null && answer.Answer.Count() > 0)
+					{
+						QuestionFormAnswersAnswer eachAnswer = answer.Answer.First();
+						if (eachAnswer.Items != null && eachAnswer.Items.Count() > 0)
+							result.Add(eachAnswer.Items.First());
+						else
+							result.Add("undefined");
+					}
+				}
 			}
 
 			return result;
@@ -232,7 +242,7 @@ namespace SemantAPI.Common.Executors
 			foreach (KeyValuePair<string, ResultSet> document in context.Results)
 			{
 				formTemplate.Question[0].QuestionIdentifier = document.Key;
-				formTemplate.Question[0].QuestionContent.Items[0] = HttpUtility.HtmlEncode(document.Value.Source);
+				formTemplate.Question[0].QuestionContent.Items[0] = Encoding.UTF8.GetString(Encoding.Default.GetBytes(document.Value.Source));
 				string question = QuestionUtil.SerializeQuestionForm(formTemplate);
 
 				HIT hit = new HIT();
@@ -318,7 +328,7 @@ namespace SemantAPI.Common.Executors
 					string id = document.Value.GetPolarity("MechanicalTurk");
 					double count = document.Value.GetScore("MechanicalTurk");
 					count = (double.IsNaN(count)) ? 0 : count;
-					if (id == "Negative" || id == "Neutral" || id == "Positive")
+					if (id == "negative" || id == "neutral" || id == "positive" || id == "failed" || id == "undefined")
 						continue;
 
 					IList<Assignment> assignments = null;
@@ -334,7 +344,7 @@ namespace SemantAPI.Common.Executors
 					else
 						assignments = client.GetAssignmentsForHIT(id, 1, true);
 
-					if (assignments.Count() < count)
+					if (assignments.Count < count)
 					{
 						processed++;
 						continue;
