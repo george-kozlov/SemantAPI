@@ -335,7 +335,13 @@ namespace SemantAPI.Human
 
 						IList<string> services = _documents.First().Value.GetServices();
 						foreach (string item in services)
-							builder.AppendFormat("{0} Polarity,{0} Score,", item);
+						{
+							//A trick for the column name. We're calculating a confidence score for Mechanical Turk so the name has been adjusted accordingly.
+							if (item == "MechanicalTurk")
+								builder.AppendFormat("{0} Polarity,{0} Confidence Score,", item);
+							else
+								builder.AppendFormat("{0} Polarity,{0} Sentiment Score,", item);
+						}
 
 						builder.Append("Source text");
 						stream.WriteLine(builder.ToString());
