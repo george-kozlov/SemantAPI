@@ -146,7 +146,7 @@ namespace SemantAPI.Common.Executors
 			int max = result.Max(item => item.Value);
 			confidence = ((double)max / answers.Count);
 			if (max == 1)
-				return "undefined";
+				return "neutral";
 
 			return result.Single(item => item.Value == max).Key;
 		}
@@ -356,6 +356,7 @@ namespace SemantAPI.Common.Executors
 
 					processed++;
 					document.Value.AddOutput("MechanicalTurk", double.NaN, polarity, confidence);
+					document.Value.AddReferencePolarity(polarity, "MechanicalTurk");
 					AnalysisExecutionProgressEventArgs e = new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Processed, context.Results.Count, processed, failed);
 					context.OnExecutionProgress("MechanicalTurk", e);
 

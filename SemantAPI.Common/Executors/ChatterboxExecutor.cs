@@ -69,6 +69,16 @@ namespace SemantAPI.Common.Executors
 			return paramsBuilder.ToString();
 		}
 
+		private string GetSentimentPolarity(double score)
+		{
+			if (score < -0.25)
+				return "negative";
+			else if (score > 0.25)
+				return "positive";
+
+			return "neutral";
+		}
+
 		#endregion
 
 		#region Public methods and properties
@@ -153,7 +163,8 @@ namespace SemantAPI.Common.Executors
 							ChatterboxSentiment sentiment = (ChatterboxSentiment)serializer.ReadObject(stream);
 
 							processed++;
-							document.Value.AddOutput("Chatterbox", sentiment.Value, "undefined");
+							string polarity = GetSentimentPolarity(sentiment.Value);
+							document.Value.AddOutput("Chatterbox", sentiment.Value, polarity);
 							AnalysisExecutionProgressEventArgs ea = new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Processed, context.Results.Count, processed, failed);
 							context.OnExecutionProgress("Chatterbox", ea);
 

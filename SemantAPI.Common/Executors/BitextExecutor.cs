@@ -82,6 +82,16 @@ namespace SemantAPI.Common.Executors
 			return sentiment.Blocks.Average(item => item.Value);
 		}
 
+		private string GetSentimentPolarity(double score)
+		{
+			if (score < 0)
+				return "negative";
+			else if (score > 0)
+				return "positive";
+
+			return "neutral";
+		}
+
 		#endregion
 
 		#region Public methods and properties
@@ -194,7 +204,8 @@ namespace SemantAPI.Common.Executors
 
 							processed++;
 							double score = MergeSentimentScore(sentiment);
-							document.Value.AddOutput("Bitext", score, "undefined");
+							string polarity = GetSentimentPolarity(score);
+							document.Value.AddOutput("Bitext", score, polarity);
 							AnalysisExecutionProgressEventArgs ea = new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Processed, context.Results.Count, processed, failed);
 							context.OnExecutionProgress("Bitext", ea);
 

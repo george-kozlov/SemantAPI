@@ -20,13 +20,13 @@ namespace SemantAPI.Common
 			Score = score;
 			Polarity = string.Empty;
 			Confidence = double.NaN;
+			ReferencePolarity = string.Empty;
 		}
 
 		public SentimentDetails(double score, string polarity)
 			: this(score)
 		{
 			Polarity = polarity;
-			Confidence = double.NaN;
 		}
 
 		public SentimentDetails(double score, string polarity, double confidence)
@@ -53,12 +53,25 @@ namespace SemantAPI.Common
 			private set;
 		}
 
+		public string ReferencePolarity
+		{
+			get;
+			set;
+		}
+
 		public override string ToString()
 		{
-			if (double.IsNaN(Score) && !double.IsNaN(Confidence))
-				return string.Format("{0},{1}", Polarity, Confidence.ToString("F"));
+			string result = string.Empty;
 
-			return string.Format("{0},{1}", Polarity, Score.ToString("F")); 
+			if (double.IsNaN(Score) && !double.IsNaN(Confidence))
+				result = string.Format("{0},{1}", Polarity, Confidence.ToString("F"));
+			else
+				result = string.Format("{0},{1}", Polarity, Score.ToString("F")); 
+
+			if (!string.IsNullOrEmpty(ReferencePolarity))
+				result += string.Format(",{0}", (Polarity.Equals(ReferencePolarity) ? "agrees" : "disagrees"));
+
+			return result;
 		}
 	}
 
@@ -104,6 +117,18 @@ namespace SemantAPI.Common
 				_output[service] = new SentimentDetails(score, polarity, confidence);
 			else
 				_output.Add(service, new SentimentDetails(score, polarity, confidence));
+		}
+
+		public void AddReferencePolarity(string polarity, string exclude)
+		{
+			foreach (KeyValuePair<string, SentimentDetails> data in _output)
+				if (data.Key != exclude)
+					data.Value.ReferencePolarity = polarity;
+		}
+
+		public bool HasReferencePolarity()
+		{
+			return _output.Any(item => string.IsNullOrEmpty(item.Value.ReferencePolarity) == false);
 		}
 
 		public List<string> GetServices()

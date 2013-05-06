@@ -171,6 +171,7 @@ namespace SemantAPI.Human
 				{
 					int lastColumn = 0;
 					bool firstLineFlag = false;
+					bool hasComplianceScore = false;
 					List<string> services = new List<string>();
 
 					while (!stream.EndOfStream)
@@ -199,6 +200,7 @@ namespace SemantAPI.Human
 							}
 
 							firstLineFlag = true;
+							hasComplianceScore = columns.Any(item => item.Contains("Compliance"));
 							continue;
 						}
 						else
@@ -208,16 +210,24 @@ namespace SemantAPI.Human
 						}
 
 						int col = 1;
+						string polarity = string.Empty;
 						columns = CheckTheText(columns, lastColumn);
 						System.Console.Write(columns.Count() + "\t");
 						ResultSet result = new ResultSet(columns[columns.Length - 1].Trim('"'));
 						System.Console.Write(string.Format("{0}\t", columns[0]));
+						
 						foreach (string service in services)
 						{
 							System.Console.Write(string.Format("{0}  ", columns[col + 1]));
 							result.AddOutput(service, double.Parse(columns[col + 1]), columns[col]);
-							col += 2;
+							if (hasComplianceScore)
+								polarity = columns[col + 2];
+							col += (hasComplianceScore && service != "MechanicalTurk") ? 3 : 2;
 						}
+
+						if (hasComplianceScore)
+							result.AddReferencePolarity(polarity, "MechanicalTurk");
+
 						System.Console.WriteLine();
 						_documents.Add(columns[0], result);
 						Application.DoEvents();
@@ -236,6 +246,13 @@ namespace SemantAPI.Human
 			}
 
 			return;
+		}
+
+		private void NormalizeResultSet(Dictionary<string, ResultSet> results)
+		{
+			foreach (KeyValuePair<string, ResultSet> item in results)
+				if (!item.Value.HasReferencePolarity())
+					item.Value.AddReferencePolarity("undefined", "MechanicalTurk");
 		}
 
 		#endregion
@@ -325,6 +342,10 @@ namespace SemantAPI.Human
 			{
 				WriteDebugInfo("All documents have been sent for processing. Sent documents: {0} Failed documents: {1}", ea.ProcessedDocuments, ea.FailedDocuments);
 
+				bool hasComplianceScore = _documents.Any(item => item.Value.HasReferencePolarity());
+				if (hasComplianceScore)
+					NormalizeResultSet(_documents);
+
 				string outputFile = GetControlPropertyThreadSafe(tbSource, "Text") as string;
 				try
 				{
@@ -339,8 +360,15 @@ namespace SemantAPI.Human
 							//A trick for the column name. We're calculating a confidence score for Mechanical Turk so the name has been adjusted accordingly.
 							if (item == "MechanicalTurk")
 								builder.AppendFormat("{0} Polarity,{0} Confidence Score,", item);
+							else if (item == "Bitext")
+								builder.AppendFormat("{0} Polarity,{0} Average Sentiment Score,", item);
+							else if (item == "Viralheat")
+								builder.AppendFormat("{0} Polarity,{0} Probability Score,", item);
 							else
 								builder.AppendFormat("{0} Polarity,{0} Sentiment Score,", item);
+
+							if (hasComplianceScore && item != "MechanicalTurk")
+								builder.AppendFormat("{0} Human Compliance,", item);
 						}
 
 						builder.Append("Source text");

@@ -451,6 +451,8 @@ namespace SemantAPI.Robot
 								//A trick for the column name. We're calculating an average  score for Bitext, so the name has been adjusted accordingly.
 								if (item == "Bitext")
 									builder.AppendFormat("{0} Polarity,{0} Average Sentiment Score,", item);
+								else if (item == "Viralheat")
+									builder.AppendFormat("{0} Polarity,{0} Probability Score,", item);
 								else
 									builder.AppendFormat("{0} Polarity,{0} Sentiment Score,", item);
 							}
