@@ -23,16 +23,6 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# Eclipse generated files #
-##########################
-sources/server/target
-sources/SchedulerService/target
-sources/AnalyticService/target
-sources/analyticService/target
-sources/backendServer/target
-sources/back/target
-sources/analyticService/
-
 .tmp_*.*
 
 # MS Office generated temp files #
@@ -65,6 +55,8 @@ sources/analyticService/
 *.lib
 *.sbr
 *.sdf
+SemantAPI/SemantAPI/Express/SingleImage/LogFiles/
+SemantAPI/SemantAPI/Express/SingleImage/Reports/
 ipch/
 [Oo]bj/
 [Oo]bj/x86/
