@@ -38,6 +38,7 @@ namespace SemantAPI.Common.Executors
 		#region Private members
 
 		AnalysisExecutionContext _context = null;
+		IList<string> _languages = null;
 
 		#endregion
 
@@ -45,6 +46,7 @@ namespace SemantAPI.Common.Executors
 
 		public ChatterboxExecutor()
 		{
+			_languages = new List<string>() { "English", "French", "Dutch", "German", "Portuguese", "Spanish" };
 		}
 
 		#endregion
@@ -81,7 +83,7 @@ namespace SemantAPI.Common.Executors
 
 		#endregion
 
-		#region Public methods and properties
+		#region IExecutor members
 
 		public void Execute(AnalysisExecutionContext context)
 		{
@@ -112,7 +114,7 @@ namespace SemantAPI.Common.Executors
 				}
 
 				Dictionary<string, string> parameters = new Dictionary<string, string>();
-				parameters.Add("lang", LocaleHelper.GetLanguageAbbreviation(context.Language));
+				parameters.Add("lang", LocaleHelper.GetDoubleLanguageAbbreviation(context.Language));
 				parameters.Add("text", Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(document.Value.Source)));
 
 				WebRequest request = WebRequest.Create("https://chatterbox-analytics-sentiment-analysis-free.p.mashape.com/sentiment/current/classify_text/");
@@ -189,10 +191,14 @@ namespace SemantAPI.Common.Executors
 			context.OnExecutionProgress("Chatterbox", new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Success, context.Results.Count, processed, failed));
 		}
 
-
 		public AnalysisExecutionContext Context
 		{
 			get { return _context; }
+		}
+
+		public bool IsLanguageSupported(string language)
+		{
+			return _languages.Contains(language);
 		}
 
 		#endregion

@@ -50,6 +50,7 @@ namespace SemantAPI.Common.Executors
 		#region Private members
 
 		AnalysisExecutionContext _context = null;
+		IList<string> _languages = null;
 
 		#endregion
 
@@ -57,11 +58,12 @@ namespace SemantAPI.Common.Executors
 
 		public AlchemyExecutor()
 		{
+			_languages = new List<string>() { "English", "French", "German", "Spanish", "Portuguese", "Italian" };
 		}
 
 		#endregion
 
-		#region Public methods and properties
+		#region IExecutor membeers
 
 		public void Execute(AnalysisExecutionContext context)
 		{
@@ -130,10 +132,14 @@ namespace SemantAPI.Common.Executors
 			context.OnExecutionProgress("Alchemy", new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Success, context.Results.Count, processed, failed));
 		}
 
-
 		public AnalysisExecutionContext Context
 		{
 			get { return _context; }
+		}
+
+		public bool IsLanguageSupported(string language)
+		{
+			return _languages.Contains(language);
 		}
 
 		#endregion

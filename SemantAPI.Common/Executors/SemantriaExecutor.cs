@@ -23,6 +23,7 @@ namespace SemantAPI.Common.Executors
 		#region Private members
 
 		AnalysisExecutionContext _context = null;
+		IList<string> _languages = null;
 
 		#endregion
 
@@ -30,6 +31,7 @@ namespace SemantAPI.Common.Executors
 
 		public SemantriaExecutor()
 		{
+			_languages = new List<string>() { "English", "French", "Spanish", "German", "Portuguese" };
 		}
 
 		#endregion
@@ -130,7 +132,7 @@ namespace SemantAPI.Common.Executors
 
 		#endregion
 
-		#region Public methods and properties
+		#region IExecutor members
 
 		public void Execute(AnalysisExecutionContext context)
 		{
@@ -268,6 +270,11 @@ namespace SemantAPI.Common.Executors
 		public AnalysisExecutionContext Context
 		{
 			get { return _context; }
+		}
+
+		public bool IsLanguageSupported(string language)
+		{
+			return _languages.Contains(language);
 		}
 
 		#endregion

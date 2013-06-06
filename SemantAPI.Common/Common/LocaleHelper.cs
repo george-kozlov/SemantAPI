@@ -535,7 +535,7 @@ namespace SemantAPI.Common
 			return new List<string>(_countries.Keys);
 		}
 
-		public static string GetStupidLanguageAbbreviation(string language, bool useUppercase = false)
+		public static string GetTripleLanguageAbbreviation(string language, bool useUppercase = false)
 		{
 			string locale = "Eng";
 
@@ -558,7 +558,7 @@ namespace SemantAPI.Common
 			return locale;
 		}
 
-		public static string GetLanguageAbbreviation(string language, bool useUppercase = false)
+		public static string GetDoubleLanguageAbbreviation(string language, bool useUppercase = false)
 		{
 			string locale = "en";
 

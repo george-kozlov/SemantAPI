@@ -153,7 +153,7 @@ namespace SemantAPI.Common.Executors
 
 		#endregion
 
-		#region Public methods and properties
+		#region IExecutor members
 
 		public void Execute(AnalysisExecutionContext context)
 		{
@@ -293,6 +293,20 @@ namespace SemantAPI.Common.Executors
 			context.OnExecutionProgress("MechanicalTurk", new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Success, context.Results.Count, processed, failed));
 		}
 
+		public AnalysisExecutionContext Context
+		{
+			get { return _context; }
+		}
+
+		public bool IsLanguageSupported(string language)
+		{
+			return true;
+		}
+
+		#endregion
+
+		#region Public methods and properties
+
 		public void Request(AnalysisExecutionContext context)
 		{
 			_context = context;
@@ -376,11 +390,6 @@ namespace SemantAPI.Common.Executors
 			}
 
 			context.OnExecutionProgress("MechanicalTurk", new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Success, context.Results.Count, processed, failed));
-		}
-
-		public AnalysisExecutionContext Context
-		{
-			get { return _context; }
 		}
 
 		#endregion

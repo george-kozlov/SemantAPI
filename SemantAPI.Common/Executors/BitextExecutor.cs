@@ -46,6 +46,7 @@ namespace SemantAPI.Common.Executors
 		#region Private members
 
 		AnalysisExecutionContext _context = null;
+		IList<string> _languages = null;
 
 		#endregion
 
@@ -53,6 +54,7 @@ namespace SemantAPI.Common.Executors
 
 		public BitextExecutor()
 		{
+			_languages = new List<string>() { "English", "Spanish", "Portuguese" };
 		}
 
 		#endregion
@@ -94,7 +96,7 @@ namespace SemantAPI.Common.Executors
 
 		#endregion
 
-		#region Public methods and properties
+		#region IExecutor members
 
 		public void Execute(AnalysisExecutionContext context)
 		{
@@ -132,7 +134,7 @@ namespace SemantAPI.Common.Executors
 				parameters.Add("Normalized", "No");
 				parameters.Add("Theme", "Gen");
 				parameters.Add("ID", document.Key);
-				parameters.Add("Lang", LocaleHelper.GetStupidLanguageAbbreviation(context.Language));
+				parameters.Add("Lang", LocaleHelper.GetTripleLanguageAbbreviation(context.Language));
 				parameters.Add("Text", HttpUtility.UrlEncode(document.Value.Source));
 
 				byte[] data = Encoding.UTF8.GetBytes(FormatParameters(parameters));
@@ -230,10 +232,14 @@ namespace SemantAPI.Common.Executors
 			context.OnExecutionProgress("Bitext", new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Success, context.Results.Count, processed, failed));
 		}
 
-
 		public AnalysisExecutionContext Context
 		{
 			get { return _context; }
+		}
+
+		public bool IsLanguageSupported(string language)
+		{
+			return _languages.Contains(language);
 		}
 
 		#endregion

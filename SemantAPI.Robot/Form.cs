@@ -147,34 +147,79 @@ namespace SemantAPI.Robot
 				return false;
 			}
 
-			if (cbSemantria.Checked && (string.IsNullOrEmpty(tbSemantriaKey.Text) || string.IsNullOrEmpty(tbSemantriaSecret.Text)))
+			if (cbSemantria.Checked)
 			{
-				MessageBox.Show("Semantria API Key or Secret is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return false;
+				if (string.IsNullOrEmpty(tbSemantriaKey.Text) || string.IsNullOrEmpty(tbSemantriaSecret.Text))
+				{
+					MessageBox.Show("Semantria API Key or Secret is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
+				else if (!new SemantriaExecutor().IsLanguageSupported(cbLanguage.Text))
+				{
+					MessageBox.Show(string.Format("Semantria doesn't support {0} language. Please uncheck Semantria service or select another language.", cbLanguage.Text),
+						"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
 			}
 
-			if (cbAlchemy.Checked && string.IsNullOrEmpty(tbAlchemyKey.Text))
+			if (cbAlchemy.Checked)
 			{
-				MessageBox.Show("Alchemy API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return false;
+				if (string.IsNullOrEmpty(tbAlchemyKey.Text))
+				{
+					MessageBox.Show("Alchemy API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
+				else if (!new AlchemyExecutor().IsLanguageSupported(cbLanguage.Text))
+				{
+					MessageBox.Show(string.Format("Alchemy doesn't support {0} language. Please uncheck Alchemy service or select another language.", cbLanguage.Text),
+						"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
 			}
 
-			if (cbChatterbox.Checked && string.IsNullOrEmpty(tbChatterboxKey.Text))
+			if (cbChatterbox.Checked)
 			{
-				MessageBox.Show("Chatterbox API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return false;
+				if (string.IsNullOrEmpty(tbChatterboxKey.Text))
+				{
+					MessageBox.Show("Chatterbox API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
+				else if (!new ChatterboxExecutor().IsLanguageSupported(cbLanguage.Text))
+				{
+					MessageBox.Show(string.Format("Chatterbox doesn't support {0} language. Please uncheck Chatterbox service or select another language.", cbLanguage.Text),
+						"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
 			}
 
-			if (cbViralheat.Checked && string.IsNullOrEmpty(tbViralheatKey.Text))
+			if (cbViralheat.Checked)
 			{
-				MessageBox.Show("Viralheat API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return false;
+				if (string.IsNullOrEmpty(tbViralheatKey.Text))
+				{
+					MessageBox.Show("Viralheat API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
+				else if (!new ViralheatExecutor().IsLanguageSupported(cbLanguage.Text))
+				{
+					MessageBox.Show(string.Format("Viralheat doesn't support {0} language. Please uncheck Viralheat service or select another language.", cbLanguage.Text),
+						"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
 			}
 
-			if (cbBitext.Checked && (string.IsNullOrEmpty(tbBitextLogin.Text) || string.IsNullOrEmpty(tbBitextPassword.Text)))
+			if (cbBitext.Checked)
 			{
-				MessageBox.Show("Bitext Login or Password is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return false;
+				if (string.IsNullOrEmpty(tbBitextLogin.Text) || string.IsNullOrEmpty(tbBitextPassword.Text))
+				{
+					MessageBox.Show("Bitext Login or Password is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
+				else if (!new BitextExecutor().IsLanguageSupported(cbLanguage.Text))
+				{
+					MessageBox.Show(string.Format("Bitext doesn't support {0} language. Please uncheck Bitext service or select another language.", cbLanguage.Text),
+						"Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return false;
+				}
 			}
 
 			return true;
