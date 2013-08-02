@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\BenchmarkHelper.cs" />
+    <Compile Include="Common\CsvFile.cs" />
     <Compile Include="Common\ExecutionContext.cs" />
     <Compile Include="Common\LocaleHelper.cs" />
     <Compile Include="Common\ResultSet.cs" />

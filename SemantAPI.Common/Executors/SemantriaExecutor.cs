@@ -113,13 +113,6 @@ namespace SemantAPI.Common.Executors
 			return config;
 		}
 
-		private void FillOutputResults(Dictionary<string, ResultSet> results, IList<DocAnalyticData> analysis)
-		{
-			foreach (DocAnalyticData data in analysis)
-				if (results.ContainsKey(data.Id))
-					results[data.Id].AddOutput("Semantria", data.SentimentScore, data.SentimentPolarity);
-		}
-
 		private void session_Error(object sender, ResponseErrorEventArgs e)
 		{
 			if (_context.UseDebugMode)
@@ -182,24 +175,36 @@ namespace SemantAPI.Common.Executors
 					int pushProgress = 50 / ((documents.Count < batchSize) ? 1 : (documents.Count / batchSize));
 					batchSize = (documents.Count < batchSize) ? documents.Count : batchSize;
 					int progress = 0;
-
+                    Dictionary<string, bool> queue = new Dictionary<string, bool>(documents.Count);
 					while (index < documents.Count)
 					{
-						progress += pushProgress;
 						int execResult = -1;
+                        batchSize = ((index + batchSize) > documents.Count) ? (documents.Count % batchSize) : batchSize;
 
-						if (context.UseDebugMode)
-						{
-							TimeSpan time = TimeSpan.Zero;
-							execResult = (int)BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
-							{
-								return session.QueueBatchOfDocuments(documents.GetRange(index, batchSize), config.ConfigId);
-							}), null, out time);
+                        if (context.UseDebugMode)
+                        {
+                            TimeSpan time = TimeSpan.Zero;
+                            execResult = (int)BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                            {
+                                List<Document> docs = documents.GetRange(index, batchSize);
+                                foreach (Document doc in docs)
+                                    queue.Add(doc.Id, false);
 
-							Console.WriteLine("\tSemantria: Batch of {0} documents has been queued. Eexecution time is: {1} ms", batchSize, time.TotalMilliseconds);
-						}
-						else
-							execResult = session.QueueBatchOfDocuments(documents.GetRange(index, batchSize), config.ConfigId);
+                                return session.QueueBatchOfDocuments(documents.GetRange(index, batchSize), config.ConfigId);
+                            }), null, out time);
+
+                            Console.WriteLine("\tSemantria: Batch of {0} documents has been queued. Eexecution time is: {1} ms", batchSize, time.TotalMilliseconds);
+                        }
+                        else
+                        {
+                            List<Document> docs = documents.GetRange(index, batchSize);
+                            foreach (Document doc in docs)
+                                queue.Add(doc.Id, false);
+
+                            execResult = session.QueueBatchOfDocuments(documents.GetRange(index, batchSize), config.ConfigId);
+                        }
+
+                        progress = (queue.Count == 1) ? 1 : ((int)(queue.Count / 2));
 
 						if (execResult != -1)
 						{
@@ -223,7 +228,7 @@ namespace SemantAPI.Common.Executors
 					}
 
 					index = 0;
-					while (index < documents.Count())
+					while (queue.Values.Contains(false))
 					{
 						Thread.Sleep(1000);
 
@@ -241,10 +246,17 @@ namespace SemantAPI.Common.Executors
 						else
 							temp = session.GetProcessedDocuments(config.ConfigId);
 
+                        foreach (DocAnalyticData data in temp)
+                        {
+                            if (context.Results.ContainsKey(data.Id))
+                            {
+                                context.Results[data.Id].AddOutput("Semantria", data.SentimentScore, data.SentimentPolarity);
+                                queue[data.Id] = true;
+                            }
+                        }
 
-						FillOutputResults(context.Results, temp);
-						index += temp.Count;
-						progress = 50 + (((index * 100) / documents.Count) / 2);
+                        index = queue.Values.Count(item => item == true);
+                        progress += ((int)(100 * index) / queue.Count);
 
 						AnalysisExecutionProgressEventArgs ea = new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Processed, context.Results.Count, progress, failed);
 						context.OnExecutionProgress("Semantria", ea);

@@ -257,34 +257,21 @@ namespace SemantAPI.Robot
 
 			try
 			{
-				using (StreamReader stream = new StreamReader(File.Open(tbSource.Text, FileMode.OpenOrCreate, FileAccess.Read)))
-				{
-					while (!stream.EndOfStream)
-					{
-						if (_cancelFlag)
-							break;
+                using (CsvFileReader reader = new CsvFileReader(path, EmptyLineBehavior.Ignore))
+                {
+                    List<string> row = new List<string>();
+                    while (reader.ReadRow(row))
+                    {
+                        if (row == null || row.Count < 1)
+                            continue;
 
-						string line = stream.ReadLine();
-						if (line.Trim().Length <= 1)
-							continue;
+                        string text = row[row.Count - 1];
+                        _documents.Add(Guid.NewGuid().ToString(), new ResultSet(text));
+                        Application.DoEvents();
+                    }
 
-						string text = string.Empty;
-						if (isCSV)
-						{
-							string[] columns = line.Split(',');
-							text = columns.First();
-						}
-						else
-						{
-							int cutLimit = (line.Length < cutBy) ? line.Length - 1 : cutBy;
-							text = line.Substring(0, cutLimit);
-						}
-						_documents.Add(Guid.NewGuid().ToString(), new ResultSet(text));
-						Application.DoEvents();
-					}
-
-					WriteDebugInfo("Source file has been loaded.");
-				}
+                    WriteDebugInfo("Source file has been loaded.");
+                }
 			}
 			catch (IOException ex)
 			{
@@ -301,7 +288,7 @@ namespace SemantAPI.Robot
 		private void btnSource_Click(object sender, EventArgs e)
 		{
 			FileDialog dialog = new OpenFileDialog();
-			dialog.Filter = "Text files (*.txt)|*.txt|CSV files (*.csv)|*.csv";
+			dialog.Filter = "CSV files (*.csv)|*.csv";
 
 			DialogResult result = dialog.ShowDialog();
 			if (result == DialogResult.OK)
@@ -485,29 +472,52 @@ namespace SemantAPI.Robot
 
 					try
 					{
-						using (StreamWriter stream = File.CreateText(outputFile))
-						{
-							StringBuilder builder = new StringBuilder();
-							builder.Append("Document ID,");
+                        using (CsvFileWriter writter = new CsvFileWriter(outputFile))
+                        {
+                            List<string> columns = new List<string>();
+                            columns.Add("Document ID");
 
-							IList<string> services = _documents.First().Value.GetServices();
-							foreach (string item in services)
-							{
-								//A trick for the column name. We're calculating an average  score for Bitext, so the name has been adjusted accordingly.
-								if (item == "Bitext")
-									builder.AppendFormat("{0} Polarity,{0} Average Sentiment Score,", item);
-								else if (item == "Viralheat")
-									builder.AppendFormat("{0} Polarity,{0} Probability Score,", item);
-								else
-									builder.AppendFormat("{0} Polarity,{0} Sentiment Score,", item);
-							}
+                            IList<string> services = _documents.First().Value.GetServices();
+                            foreach (string item in services)
+                            {
+                                if (item == "Bitext")
+                                    columns.AddRange(new List<string>()
+                                    {
+                                        string.Format("{0} Polarity", item),
+                                        string.Format("{0} Average Sentiment Score", item)
+                                    });
+                                else if (item == "Viralheat")
+                                    columns.AddRange(new List<string>()
+                                    {
+                                        string.Format("{0} Polarity", item),
+                                        string.Format("{0} Probability Score", item)
+                                    });
+                                else
+                                    columns.AddRange(new List<string>()
+                                    {
+                                        string.Format("{0} Polarity", item),
+                                        string.Format("{0} Sentiment Score", item)
+                                    });
+                            }
+                            columns.Add("Source text");
+                            writter.WriteRow(columns);
 
-							builder.Append("Source text");
-							stream.WriteLine(builder.ToString());
+                            foreach (KeyValuePair<string, ResultSet> data in _documents)
+                            {
+                                columns = new List<string>();
+                                columns.Add(data.Key);
 
-							foreach (KeyValuePair<string, ResultSet> data in _documents)
-								stream.WriteLine(string.Format("{0},{1}", data.Key, data.Value.ToString()));
-						}
+                                foreach (string srvc in services)
+                                {
+                                    ResultSet results = data.Value;
+                                    columns.Add(results.GetPolarity(srvc));
+                                    columns.Add(results.GetScore(srvc).ToString("F"));
+                                }
+
+                                columns.Add(data.Value.Source);
+                                writter.WriteRow(columns);
+                            }
+                        }
 					}
 					catch (IOException ex)
 					{

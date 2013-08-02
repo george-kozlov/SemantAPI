@@ -143,21 +143,6 @@ namespace SemantAPI.Human
 			return false;
 		}
 
-		private string[] CheckTheText(string[] splitted, int lastIndex)
-		{
-			if ((splitted.Count() - 1) == lastIndex)
-				return splitted;
-
-			List<string> fixedColumns = new List<string>(splitted.Take(lastIndex));
-			string lastColumn = string.Empty;
-
-			for (int i = lastIndex; i < splitted.Count(); i++)
-				lastColumn += splitted[i];
-
-			fixedColumns.Add(lastColumn);
-			return fixedColumns.ToArray();
-		}
-
 		private void ReadTheSource(string path)
 		{
 			if (!File.Exists(path) || new FileInfo(path).Length == 0)
@@ -167,74 +152,58 @@ namespace SemantAPI.Human
 			WriteDebugInfo("Start reading of the file...");
 			try
 			{
-				using (StreamReader stream = new StreamReader(File.Open(path, FileMode.OpenOrCreate, FileAccess.Read)))
-				{
-					int lastColumn = 0;
-					bool firstLineFlag = false;
-					bool hasComplianceScore = false;
-					List<string> services = new List<string>();
+                using (CsvFileReader reader = new CsvFileReader(path, EmptyLineBehavior.Ignore))
+                {
+                    bool isFirstRow = true;
+                    bool hasComplianceScore = false;
+                    List<string> row = new List<string>();
+                    List<string> services = new List<string>();
 
-					while (!stream.EndOfStream)
-					{
-						if (_cancelFlag)
-							break;
+                    while (reader.ReadRow(row))
+                    {
+                        if (isFirstRow)
+                        {
+                            isFirstRow = false;
+                            if (row.Count <= 1)
+                                throw new Exception("Source file isn't proper CSV file for SemantAPI.Human application");
+                            if (!row[0].Equals("Document ID"))
+                                throw new Exception("Source file doesn't have \"Document ID\" column or it's not the first one.");
+                            if (row[row.Count - 1] != "Source text")
+                                throw new Exception("Source file doesn't have \"Source text\" column or it's not the last one.");
 
-						string line = stream.ReadLine();
-						string[] columns = line.Split(',');
+                            for (int index = 1; index < row.Count - 1; index++)
+                            {
+                                string service = row[index].Split(' ').First();
+                                if (!services.Contains(service))
+                                    services.Add(service);
+                            }
 
-						if (!firstLineFlag)
-						{
-							lastColumn = columns.Count() - 1;
-							if (columns.Length <= 1)
-								throw new Exception("Source file isn't proper CSV file for SemantAPI.Human application");
-							if (columns[0] != "Document ID")
-								throw new Exception("Source file doesn't have \"Document ID\" column or it's not the first one.");
-							if (columns[columns.Length - 1] != "Source text")
-								throw new Exception("Source file doesn't have \"Source text\" column or it's not the last one.");
+                            hasComplianceScore = row.Any(item => item.Contains("Compliance"));
+                            continue;
+                        }
 
-							for (int index = 1; index < columns.Length - 1; index++)
-							{
-								string service = columns[index].Split(' ').First();
-								if (!services.Contains(service))
-									services.Add(service);
-							}
+                        int col = 1;
+                        string polarity = string.Empty;
+                        ResultSet result = new ResultSet(row[row.Count - 1]);
 
-							firstLineFlag = true;
-							hasComplianceScore = columns.Any(item => item.Contains("Compliance"));
-							continue;
-						}
-						else
-						{
-							if (line.Trim().Length <= 1)
-								continue;
-						}
+                        foreach (string service in services)
+                        {
+                            result.AddOutput(service, double.Parse(row[col + 1]), row[col]);
+                            if (hasComplianceScore)
+                                polarity = row[col + 2];
 
-						int col = 1;
-						string polarity = string.Empty;
-						columns = CheckTheText(columns, lastColumn);
-						System.Console.Write(columns.Count() + "\t");
-						ResultSet result = new ResultSet(columns[columns.Length - 1].Trim('"'));
-						System.Console.Write(string.Format("{0}\t", columns[0]));
-						
-						foreach (string service in services)
-						{
-							System.Console.Write(string.Format("{0}  ", columns[col + 1]));
-							result.AddOutput(service, double.Parse(columns[col + 1]), columns[col]);
-							if (hasComplianceScore)
-								polarity = columns[col + 2];
-							col += (hasComplianceScore && service != "MechanicalTurk") ? 3 : 2;
-						}
+                            col += (hasComplianceScore && service != "MechanicalTurk") ? 3 : 2;
+                        }
 
-						if (hasComplianceScore)
-							result.AddReferencePolarity(polarity, "MechanicalTurk");
+                        if (hasComplianceScore)
+                            result.AddReferencePolarity(polarity, "MechanicalTurk");
 
-						System.Console.WriteLine();
-						_documents.Add(columns[0], result);
-						Application.DoEvents();
-					}
+                        _documents.Add(row[0], result);
+                        Application.DoEvents();
+                    }
 
-					WriteDebugInfo("Source file has been loaded.");
-				}
+                    WriteDebugInfo("Source file has been loaded.");
+                }
 			}
 			catch (IOException ex)
 			{
@@ -349,34 +318,59 @@ namespace SemantAPI.Human
 				string outputFile = GetControlPropertyThreadSafe(tbSource, "Text") as string;
 				try
 				{
-					using (StreamWriter stream = File.CreateText(outputFile))
-					{
-						StringBuilder builder = new StringBuilder();
-						builder.Append("Document ID,");
+                    using (CsvFileWriter writter = new CsvFileWriter(outputFile))
+                    {
+                        List<string> columns = new List<string>();
+                        columns.Add("Document ID");
 
-						IList<string> services = _documents.First().Value.GetServices();
-						foreach (string item in services)
-						{
-							//A trick for the column name. We're calculating a confidence score for Mechanical Turk so the name has been adjusted accordingly.
-							if (item == "MechanicalTurk")
-								builder.AppendFormat("{0} Polarity,{0} Confidence Score,", item);
-							else if (item == "Bitext")
-								builder.AppendFormat("{0} Polarity,{0} Average Sentiment Score,", item);
-							else if (item == "Viralheat")
-								builder.AppendFormat("{0} Polarity,{0} Probability Score,", item);
-							else
-								builder.AppendFormat("{0} Polarity,{0} Sentiment Score,", item);
+                        IList<string> services = _documents.First().Value.GetServices();
+                        foreach (string item in services)
+                        {
+                            if (item == "MechanicalTurk")
+                                columns.AddRange(new List<string>()
+                                {
+                                    string.Format("{0} Polarity", item),
+                                    string.Format("{0} Confidence Score", item)
+                                });
+                            else if (item == "Bitext")
+                                columns.AddRange(new List<string>()
+                                {
+                                    string.Format("{0} Polarity", item),
+                                    string.Format("{0} Average Sentiment Score", item)
+                                });
+                            else if (item == "Viralheat")
+                                columns.AddRange(new List<string>()
+                                {
+                                    string.Format("{0} Polarity", item),
+                                    string.Format("{0} Probability Score", item)
+                                });
+                            else
+                                columns.AddRange(new List<string>()
+                                {
+                                    string.Format("{0} Polarity", item),
+                                    string.Format("{0} Sentiment Score", item)
+                                });
+                        }
 
-							if (hasComplianceScore && item != "MechanicalTurk")
-								builder.AppendFormat("{0} Human Compliance,", item);
-						}
+                        columns.Add("Source text");
+                        writter.WriteRow(columns);
 
-						builder.Append("Source text");
-						stream.WriteLine(builder.ToString());
+                        foreach (KeyValuePair<string, ResultSet> data in _documents)
+                        {
+                            columns = new List<string>();
+                            columns.Add(data.Key);
 
-						foreach (KeyValuePair<string, ResultSet> data in _documents)
-							stream.WriteLine(string.Format("{0},{1}", data.Key, data.Value.ToString()));
-					}
+                            foreach (string srvc in services)
+                            {
+                                ResultSet results = data.Value;
+                                columns.Add(results.GetPolarity(srvc));
+                                columns.Add(results.GetScore(srvc).ToString("F"));
+                            }
+
+                            columns.Add(data.Value.Source);
+                            writter.WriteRow(columns);
+                        }
+                    }
 				}
 				catch (IOException ex)
 				{
