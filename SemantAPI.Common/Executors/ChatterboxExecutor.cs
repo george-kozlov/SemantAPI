@@ -105,7 +105,7 @@ namespace SemantAPI.Common.Executors
 					document.Value.AddOutput("Chatterbox", 0, "failed");
 
 					AnalysisExecutionProgressEventArgs ea = new AnalysisExecutionProgressEventArgs(AnalysisExecutionStatus.Failed, context.Results.Count, processed, failed);
-					context.OnExecutionProgress("Bitext", ea);
+                    context.OnExecutionProgress("Chatterbox", ea);
 
 					if (ea.Cancel)
 						break;
