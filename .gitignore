@@ -55,6 +55,7 @@ Thumbs.db
 *.lib
 *.sbr
 *.sdf
+*Log*.htm
 SemantAPI/SemantAPI/Express/SingleImage/
 SemantAPI/SemantAPI/Express/Interm/
 SemantAPI/SemantAPI/Express/DVD-5/
@@ -69,7 +70,3 @@ Ankh.NoLoad
 UpgradeLog*.XML
 _UpgradeReport_Files/
 [Tt]est[Rr]esults/
-
-# Visual Studio generated temp files #
-######################################
-*Log*.htm
