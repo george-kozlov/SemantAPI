@@ -4021,6 +4021,8 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_FC2B797CE6894379B43D6B8C67558511.exe</td><td/><td>&lt;ISProjectFolder&gt;\..\Resources\icon.ico</td><td>0</td></row>
+		<row><td>NewShortcut2_C0EFD53C20D94B51ADA36C472E592A34.exe</td><td/><td>&lt;ISProjectFolder&gt;\..\Resources\icon.ico</td><td>0</td></row>
 		<row><td>NewShortcut3_58A8CCF555174EF2B97D6A19166B5E25.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2012SpringLE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 	</table>
 
@@ -4700,8 +4702,8 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>NewShortcut1</td><td>newfolder1</td><td>##ID_STRING5##</td><td>SemantAPI.Human.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>NewShortcut2</td><td>newfolder1</td><td>##ID_STRING6##</td><td>SemantAPI.Robot.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut1</td><td>newfolder1</td><td>##ID_STRING5##</td><td>SemantAPI.Human.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_FC2B797CE6894379B43D6B8C67558511.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut2</td><td>newfolder1</td><td>##ID_STRING6##</td><td>SemantAPI.Robot.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut2_C0EFD53C20D94B51ADA36C472E592A34.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut3</td><td>newfolder1</td><td>##ID_STRING7##</td><td>ISX_DEFAULTCOMPONENT1</td><td>[SystemFolder]MsiExec.exe</td><td>/x [ProductCode]</td><td/><td/><td>NewShortcut3_58A8CCF555174EF2B97D6A19166B5E25.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
