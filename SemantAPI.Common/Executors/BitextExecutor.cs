@@ -1,9 +1,11 @@
-﻿// <copyright file="BitextExecutor.cs" company="13th Parish">
-// Copyright (c) 13th Parish 2013 All Rights Reserved
-// </copyright>
-// <author>George Kozlov (george.kozlov@outlook.com)</author>
-// <date>03/30/2013</date>
-// <summary>BytextSentiment and BitextExecutor classes</summary>
+﻿//
+// SemantAPI.Robot, SemantAPI.Human
+// Copyright (C) 2013 George Kozlov
+// These programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation. either version 3 of the License, or any later version.
+// These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
+// For further questions or inquiries, please contact semantapi (at) gmail (dot) com
+//
 
 using System;
 using System.Collections.Generic;
@@ -63,8 +65,8 @@ namespace SemantAPI.Common.Executors
 
 		private string FormatParameters(Dictionary<string, string> parameters)
 		{
-			var paramsBuilder = new StringBuilder();
-			var counter = 0;
+            StringBuilder paramsBuilder = new StringBuilder();
+			int counter = 0;
 
 			foreach (KeyValuePair<string, string> pair in parameters)
 			{

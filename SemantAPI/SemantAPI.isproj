@@ -28,6 +28,14 @@
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2012SpringLimited\InstallShield.targets"/>
 	<ItemGroup>
+		<ProjectReference Include="..\SemantAPI.Human\SemantAPI.Human.csproj">
+			<Name>SemantAPI.Human</Name>
+			<Project>{4486B2F7-D7A0-4435-8168-9E2050011673}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\SemantAPI.Robot\SemantAPI.Robot.csproj">
+			<Name>SemantAPI.Robot</Name>
+			<Project>{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}</Project>
+		</ProjectReference>
 		<ProjectReference Include="..\Alchemy\Alchemy.csproj">
 			<Name>Alchemy</Name>
 			<Project>{F232BA14-5FC3-4565-9072-5B333D0C9963}</Project>
@@ -40,17 +48,13 @@
 			<Name>Amazon.WebServices.MechanicalTurk.Domain</Name>
 			<Project>{F260F434-6789-4E55-8548-E9F477E8A0E5}</Project>
 		</ProjectReference>
+		<ProjectReference Include="..\Repustate\Repustate.csproj">
+			<Name>Repustate</Name>
+			<Project>{0CDA51C1-E493-4D69-AC3D-034989E473A5}</Project>
+		</ProjectReference>
 		<ProjectReference Include="..\SemantAPI.Common\SemantAPI.Common.csproj">
 			<Name>SemantAPI.Common</Name>
 			<Project>{5377EB13-7142-4BD6-A4A1-9594C563FE3D}</Project>
-		</ProjectReference>
-		<ProjectReference Include="..\SemantAPI.Human\SemantAPI.Human.csproj">
-			<Name>SemantAPI.Human</Name>
-			<Project>{4486B2F7-D7A0-4435-8168-9E2050011673}</Project>
-		</ProjectReference>
-		<ProjectReference Include="..\SemantAPI.Robot\SemantAPI.Robot.csproj">
-			<Name>SemantAPI.Robot</Name>
-			<Project>{A7FDB9D9-016E-4454-B2C4-8AAB6F21C65C}</Project>
 		</ProjectReference>
 		<ProjectReference Include="..\Semantria\Semantria.Com.csproj">
 			<Name>Semantria.Com</Name>

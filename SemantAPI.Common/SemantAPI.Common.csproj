@@ -11,6 +11,7 @@
     <AssemblyName>SemantAPI.Common</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,10 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -50,7 +54,9 @@
     <Compile Include="Executors\ChatterboxExecutor.cs" />
     <Compile Include="Executors\IExecutor.cs" />
     <Compile Include="Executors\MechanicalTurkExecutor.cs" />
+    <Compile Include="Executors\RepustateExecutor.cs" />
     <Compile Include="Executors\SemantriaExecutor.cs" />
+    <Compile Include="Executors\SkyttleExecutor.cs" />
     <Compile Include="Executors\ViralheatExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,10 +73,17 @@
       <Project>{41a1da7c-40c1-4d44-9cb8-b6827e28bcc3}</Project>
       <Name>Amazon.WebServices.MechanicalTurk</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repustate\Repustate.csproj">
+      <Project>{0cda51c1-e493-4d69-ac3d-034989e473a5}</Project>
+      <Name>Repustate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Semantria\Semantria.Com.csproj">
       <Project>{e942ab83-da93-4b16-a826-ff3993b47329}</Project>
       <Name>Semantria.Com</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

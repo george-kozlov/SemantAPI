@@ -1,9 +1,11 @@
-﻿// <copyright file="Form.cs" company="13th Parish">
-// Copyright (c) 13th Parish 2013 All Rights Reserved
-// </copyright>
-// <author>George Kozlov (george.kozlov@outlook.com)</author>
-// <date>03/30/2013</date>
-// <summary>Main SemantAPIRobot form class</summary>
+﻿//
+// SemantAPI.Robot, SemantAPI.Human
+// Copyright (C) 2013 George Kozlov
+// These programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation. either version 3 of the License, or any later version.
+// These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
+// For further questions or inquiries, please contact semantapi (at) gmail (dot) com
+//
 
 using System;
 using System.Collections.Generic;
@@ -177,6 +179,21 @@ namespace SemantAPI.Robot
 				}
 			}
 
+            if (cbRepustate.Checked)
+            {
+                if (string.IsNullOrEmpty(tbRepustateKey.Text))
+                {
+                    MessageBox.Show("Repustate API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else if (!new RepustateExecutor().IsLanguageSupported(cbLanguage.Text))
+                {
+                    MessageBox.Show(string.Format("Repustate doesn't support {0} language. Please uncheck Repustate service or select another language.", cbLanguage.Text),
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
 			if (cbChatterbox.Checked)
 			{
 				if (string.IsNullOrEmpty(tbChatterboxKey.Text))
@@ -222,6 +239,21 @@ namespace SemantAPI.Robot
 				}
 			}
 
+            if (cbSkyttle.Checked)
+            {
+                if (string.IsNullOrEmpty(tbSkyttleKey.Text))
+                {
+                    MessageBox.Show("Skyttle API Key is missing.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                else if (!new SkyttleExecutor().IsLanguageSupported(cbLanguage.Text))
+                {
+                    MessageBox.Show(string.Format("Skyttle doesn't support {0} language. Please uncheck Skyttle service or select another language.", cbLanguage.Text),
+                        "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
 			return true;
 		}
 
@@ -233,10 +265,12 @@ namespace SemantAPI.Robot
 				btClose.Enabled = true;
 				btProcess.Text = "Process";
 				pbAlchemy.Value = 0;
+                pbRepustate.Value = 0;
 				pbChatterbox.Value = 0;
 				pbSemantria.Value = 0;
 				pbViralheat.Value = 0;
 				pbBitext.Value = 0;
+                pbSkyttle.Value = 0;
 
 				WriteDebugInfo("Data analysis process has been canceled!");
 				return true;
@@ -341,6 +375,13 @@ namespace SemantAPI.Robot
 			InitMarker("Alchemy", cbAlchemy.Checked);
 		}
 
+
+        private void cbRepustate_CheckedChanged(object sender, EventArgs e)
+        {
+            tbRepustateKey.Enabled = cbRepustate.Checked;
+            InitMarker("Repustate", cbRepustate.Checked);
+        }
+
 		private void cbChatterbox_CheckedChanged(object sender, EventArgs e)
 		{
 			tbChatterboxKey.Enabled = cbChatterbox.Checked;
@@ -360,6 +401,12 @@ namespace SemantAPI.Robot
 			InitMarker("Bitext", cbBitext.Checked);
 		}
 
+        private void cbSkyttle_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSkyttleKey.Enabled = cbSkyttle.Checked;
+            InitMarker("Skyttle", cbSkyttle.Checked);
+        }
+
 		private void llSemantria_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			llSemantria.LinkVisited = true;
@@ -377,6 +424,12 @@ namespace SemantAPI.Robot
 			llChatterbox.LinkVisited = true;
 			System.Diagnostics.Process.Start("http://chatterbox.co");
 		}
+        
+        private void llRepustate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            llRepustate.LinkVisited = true;
+            System.Diagnostics.Process.Start("http://www.repustate.com");
+        }
 
 		private void llViralheat_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
@@ -390,6 +443,12 @@ namespace SemantAPI.Robot
 			System.Diagnostics.Process.Start("http://www.bitext.com");
 		}
 
+        private void llSkyttle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            llSkyttle.LinkVisited = true;
+            System.Diagnostics.Process.Start("http://www.skyttle.com");
+        }
+
 		private void btClose_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
@@ -402,7 +461,7 @@ namespace SemantAPI.Robot
 		}
 
 		#endregion
-
+        
 		#region Context execution handlers
 
 		private void ExecutionProgress(string service, AnalysisExecutionProgressEventArgs ea)
@@ -424,10 +483,12 @@ namespace SemantAPI.Robot
 					SetControlPropertyThreadSafe(btClose, "Enabled", true);
 					SetControlPropertyThreadSafe(btProcess, "Text", "Process");
 					SetControlPropertyThreadSafe(pbAlchemy, "Value", 0);
+                    SetControlPropertyThreadSafe(pbRepustate, "Value", 0);
 					SetControlPropertyThreadSafe(pbChatterbox, "Value", 0);
 					SetControlPropertyThreadSafe(pbSemantria, "Value", 0);
 					SetControlPropertyThreadSafe(pbViralheat, "Value", 0);
 					SetControlPropertyThreadSafe(pbBitext, "Value", 0);
+                    SetControlPropertyThreadSafe(pbSkyttle, "Value", 0);
 				}
 
 				return;
@@ -446,6 +507,10 @@ namespace SemantAPI.Robot
 						SetControlPropertyThreadSafe(pbAlchemy, "Value", ea.Progress);
 						break;
 
+                    case "Repustate":
+                        SetControlPropertyThreadSafe(pbRepustate, "Value", ea.Progress);
+                        break;
+
 					case "Chatterbox":
 						SetControlPropertyThreadSafe(pbChatterbox, "Value", ea.Progress);
 						break;
@@ -457,6 +522,10 @@ namespace SemantAPI.Robot
 					case "Bitext":
 						SetControlPropertyThreadSafe(pbBitext, "Value", ea.Progress);
 						break;
+                    
+                    case "Skyttle":
+                        SetControlPropertyThreadSafe(pbSkyttle, "Value", ea.Progress);
+                        break;
 				}
 			}
 
@@ -529,10 +598,12 @@ namespace SemantAPI.Robot
 					SetControlPropertyThreadSafe(btClose, "Enabled", true);
 					SetControlPropertyThreadSafe(btProcess, "Text", "Process");
 					SetControlPropertyThreadSafe(pbAlchemy, "Value", 0);
+                    SetControlPropertyThreadSafe(pbRepustate, "Value", 0);
 					SetControlPropertyThreadSafe(pbChatterbox, "Value", 0);
 					SetControlPropertyThreadSafe(pbSemantria, "Value", 0);
 					SetControlPropertyThreadSafe(pbViralheat, "Value", 0);
 					SetControlPropertyThreadSafe(pbBitext, "Value", 0);
+                    SetControlPropertyThreadSafe(pbSkyttle, "Value", 0);
 
 					MessageBox.Show("Analysis is done! Check the output file for results.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
@@ -602,6 +673,40 @@ namespace SemantAPI.Robot
 				}), null);
 			}
 
+            if (cbRepustate.Checked)
+            {
+                WriteDebugInfo("Repustate service is checked. Preparing the context...");
+
+                AnalysisExecutionContext rsContext = new AnalysisExecutionContext(_documents);
+                rsContext.ExecutionProgress += ExecutionProgress;
+                rsContext.Key = tbRepustateKey.Text;
+                rsContext.Language = cbLanguage.Text;
+                if (UseDebugMode && Benchmark.Contains("Repustate"))
+                    rsContext.UseDebugMode = true;
+                RepustateExecutor rsExecutor = new RepustateExecutor();
+                /*
+                //Check if dropdown selected language is supported?
+                bool trial = rsExecutor.Check_currentLang(cbLanguage.Text);
+
+                //If selected language is not supported then test remianing languages
+                //and if one of remaining language is supported, means user using trial credendials
+                //(because repustate trial account supports only one configured language at a time)
+                if (trial == false)
+                {
+                    if (rsExecutor.Check_otherLangs(cbLanguage.Text))
+                        trial = true;
+                }
+
+                //Show warning msg and stop repustate here
+                MessageBox.Show("Trial Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
+                {
+                    WriteDebugInfo("Running the dedicated thread for Repustate context serving...");
+                    rsExecutor.Execute(rsContext);
+
+                }), null);
+            }
+
 			if (cbChatterbox.Checked)
 			{
 				WriteDebugInfo("Chatterbox service is checked. Preparing the context...");
@@ -663,8 +768,148 @@ namespace SemantAPI.Robot
 					btExecutor.Execute(btContext);
 				}), null);
 			}
+
+            if (cbSkyttle.Checked)
+            {
+                WriteDebugInfo("Skyttle service is checked. Preparing the context...");
+
+                AnalysisExecutionContext skContext = new AnalysisExecutionContext(_documents);
+                skContext.ExecutionProgress += ExecutionProgress;
+                skContext.Key = tbSkyttleKey.Text;
+                skContext.Language = cbLanguage.Text;
+                if (UseDebugMode && Benchmark.Contains("Skyttle"))
+                    skContext.UseDebugMode = true;
+                SkyttleExecutor skExecutor = new SkyttleExecutor();
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
+                {
+                    WriteDebugInfo("Running the dedicated thread for Skyttle context serving...");
+                    skExecutor.Execute(skContext);
+                }), null);
+            }
 		}
 
 		#endregion
+
+        #region Language based enable/disable services
+
+        private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (new SemantriaExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                gpSemantria.Enabled = true;
+                if (tbSemantriaKey.Text != "" || tbSemantriaSecret.Text != "")
+                    cbSemantria.Checked = true;
+
+                cbSemantria.Enabled = true;
+            }
+            else
+            {
+                gpSemantria.Enabled = false;
+                cbSemantria.Checked = false;
+                cbSemantria.Enabled = false;
+                tbSemantriaKey.Enabled = false;
+                tbSemantriaSecret.Enabled = false;           
+            }
+
+            if (new AlchemyExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                gpAlchemy.Enabled = true;
+                if (tbAlchemyKey.Text != "")
+                    cbAlchemy.Checked = true;
+
+                cbAlchemy.Enabled = true;
+            }
+            else
+            {
+                gpAlchemy.Enabled = false;
+                cbAlchemy.Checked = false;
+                cbAlchemy.Enabled = false;
+                tbAlchemyKey.Enabled = false;
+            }
+
+            if (new RepustateExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                gpRepustate.Enabled = true;
+                if (tbRepustateKey.Text != "")
+                    cbRepustate.Checked = true;
+
+                cbRepustate.Enabled = true;
+            }
+            else
+            {
+                gpRepustate.Enabled = false;
+                cbRepustate.Checked = false;
+                cbRepustate.Enabled = false;
+                tbRepustateKey.Enabled = false;
+            }
+            
+            if (new ChatterboxExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                if (tbChatterboxKey.Text != "")
+                    cbChatterbox.Checked = true;
+
+                cbChatterbox.Enabled = true;
+            }
+            else
+            {
+                cbChatterbox.Checked = false;
+                cbChatterbox.Enabled = false;
+                tbChatterboxKey.Enabled = false;
+            }
+
+            if (new ViralheatExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                gbViralheat.Enabled = true;
+                if (tbViralheatKey.Text != "")
+                    cbViralheat.Checked = true;
+
+                cbViralheat.Enabled = true;
+            }
+            else
+            {
+                gbViralheat.Enabled = false;
+                cbViralheat.Checked = false;
+                cbViralheat.Enabled = false;
+                tbViralheatKey.Enabled = false;
+            }
+
+            if (new BitextExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                gbBitext.Enabled = true;
+                if (tbBitextLogin.Text != "" || tbBitextPassword.Text != "")
+                    cbBitext.Checked = true;
+
+                cbBitext.Enabled = true;
+            }
+            else
+            {
+                gbBitext.Enabled = false;
+                cbBitext.Checked = false;
+                cbBitext.Enabled = false;
+                tbBitextLogin.Enabled = false;
+                tbBitextPassword.Enabled = false;
+            }
+
+            if (new SkyttleExecutor().IsLanguageSupported(cbLanguage.Text))
+            {
+                gbSkyttle.Enabled = true;
+                if (tbSkyttleKey.Text != "")
+                    cbSkyttle.Checked = true;
+
+                cbSkyttle.Enabled = true;
+            }
+            else
+            {
+                gbSkyttle.Enabled = false;
+                cbSkyttle.Checked = false;
+                cbSkyttle.Enabled = false;
+                tbSkyttleKey.Enabled = false;
+            }
+
+        }
+
+        #endregion
+
 	}
 }

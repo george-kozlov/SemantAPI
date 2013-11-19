@@ -12,7 +12,7 @@
     <AssemblyName>Amazon.WebServices.MechanicalTurk</AssemblyName>
     <SignAssembly>false</SignAssembly>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>

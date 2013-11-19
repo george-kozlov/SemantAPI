@@ -24,6 +24,10 @@ namespace Semantria.Com.Mapping.Configuration
         [DataMember(Name = "one_sentence")]
         [XmlElementAttribute("one_sentence")]
         public bool OneSentence { get; set; }
+
+        [DataMember(Name = "process_html")]
+        [XmlElementAttribute("process_html")]
+        public bool ProcessHtml { get; set; }
         
         [DataMember(Name = "is_primary")]
         [XmlElementAttribute("is_primary")]
@@ -75,6 +79,10 @@ namespace Semantria.Com.Mapping.Configuration
         [XmlElementAttribute("named_entities_limit")]
         public int NamedEntitiesLimit { get; set; }
 
+		[DataMember(Name = "named_mentions_limit")]
+		[XmlElementAttribute("named_mentions_limit")]
+		public int NamedMentionsLimit { get; set; }
+
         [DataMember(Name = "user_entities_limit")]
         [XmlElementAttribute("user_entities_limit")]
         public int UserEntitiesLimit { get; set; }
@@ -83,9 +91,17 @@ namespace Semantria.Com.Mapping.Configuration
         [XmlElementAttribute("entity_themes_limit")]
         public int EntityThemesLimit { get; set; }
 
+		[DataMember(Name = "user_mentions_limit")]
+		[XmlElementAttribute("user_mentions_limit")]
+		public int UserMentionsLimit { get; set; }
+
         [DataMember(Name = "themes_limit")]
         [XmlElementAttribute("themes_limit")]
         public int ThemesLimit { get; set; }
+
+		[DataMember(Name = "theme_mentions_limit")]
+		[XmlElementAttribute("theme_mentions_limit")]
+		public int ThemeMentionsLimit { get; set; }
 
         [DataMember(Name = "phrases_limit")]
         [XmlElementAttribute("phrases_limit")]
@@ -107,6 +123,14 @@ namespace Semantria.Com.Mapping.Configuration
         [XmlElementAttribute("user_relations_limit")]
         public int UserRelationsLimit { get; set; }
 
+		[DataMember(Name = "named_opinions_limit")]
+		[XmlElementAttribute("named_opinions_limit")]
+		public int NamedOpinionsLimit { get; set; }
+
+		[DataMember(Name = "user_opinions_limit")]
+		[XmlElementAttribute("user_opinions_limit")]
+		public int UserOpinionsLimit { get; set; }
+
         [DataMember(Name = "pos_types")]
         [XmlElementAttribute("pos_types")]
         public string PosTypes { get; set; }
@@ -114,6 +138,10 @@ namespace Semantria.Com.Mapping.Configuration
         [DataMember(Name = "detect_language")]
         [XmlElementAttribute("detect_language")]
         public bool DetectLanguage { get; set; }
+
+        [DataMember(Name = "auto_categories_limit")]
+        [XmlElementAttribute("auto_categories_limit")]
+        public int AutoCategoriesLimit { get; set; }
     }
 
     [DataContract(Name = "collection")]
@@ -132,6 +160,10 @@ namespace Semantria.Com.Mapping.Configuration
         [XmlElementAttribute("facet_mentions_limit")]
         public int FacetMentionsLimit { get; set; }
 
+        [DataMember(Name = "attribute_mentions_limit")]
+        [XmlElementAttribute("attribute_mentions_limit")]
+        public int AttributeMentionsLimit { get; set; }
+
         [DataMember(Name = "concept_topics_limit")]
         [XmlElementAttribute("concept_topics_limit")]
         public int ConceptTopicsLimit { get; set; }
@@ -147,7 +179,10 @@ namespace Semantria.Com.Mapping.Configuration
         [DataMember(Name = "themes_limit")]
         [XmlElementAttribute("themes_limit")]
         public int ThemesLimit { get; set; }
-    }
+
+        [DataMember(Name = "theme_mentions_limit")]
+        [XmlElementAttribute("theme_mentions_limit")]
+        public int ThemeMentionsLimit { get; set; }    }
 }
 
 namespace Semantria.Com.Mapping.Configuration.Stub

@@ -348,13 +348,19 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>Alchemy.Primary_output</td><td>{1716B11F-3CB5-47E1-BB79-053119CB05C5}</td><td>INSTALLDIR</td><td>2</td><td/><td>alchemy.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Alchemy.Primary_output1</td><td>{D475E1EB-090D-4BAB-97D0-4AA0DFBC0230}</td><td>INSTALLDIR</td><td>2</td><td/><td>alchemy.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output</td><td>{5DF4B370-F5E2-4A4E-9FDF-0320D35A98F9}</td><td>INSTALLDIR</td><td>2</td><td/><td>amazon.webservices.mechanica1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output1</td><td>{9D09C324-3AB5-457A-89CD-AE2E454A9BF2}</td><td>INSTALLDIR</td><td>2</td><td/><td>amazon.webservices.mechanica</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>Amazon.WebServices.MechanicalTurk.Primary_output</td><td>{016EB288-4122-41B3-8E9C-C080C8B04D88}</td><td>INSTALLDIR</td><td>2</td><td/><td>amazon.webservices.mechanica</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Amazon.WebServices.MechanicalTurk.Primary_output1</td><td>{13F40F09-3F23-4A28-897C-0C3821DDEEAF}</td><td>INSTALLDIR</td><td>2</td><td/><td>amazon.webservices.mechanica1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{F6C6E1E6-4310-4A83-8479-D605140ECEC8}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Repustate.Primary_output</td><td>{59DFADB6-3060-47F1-8D41-F9D7329BCF41}</td><td>INSTALLDIR</td><td>2</td><td/><td>repustate.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SemantAPI.Common.Primary_output</td><td>{36E986E4-F983-4586-B2B0-1C0BCA1C0630}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantapi.common.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SemantAPI.Common.Primary_output1</td><td>{40D96F06-EF99-4A2F-B488-7374B6B09648}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantapi.common.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SemantAPI.Human.Primary_output</td><td>{FC9E721A-0312-4A86-8BD3-C434175B8E48}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantapi.human.primary_outp</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>SemantAPI.Robot.Primary_output</td><td>{881B58D1-15AC-46AA-837B-A429408E4A50}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantapi.robot.primary_outp</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Semantria.Com.Primary_output</td><td>{DA23FD27-D850-49C0-B6F2-41EEDC9726E6}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantria.com.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>SemantAPI.Robot.Primary_output1</td><td>{6785B5CE-64EB-4384-8A25-AEEC4B46222F}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantapi.robot.primary_outp</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Semantria.Com.Primary_output</td><td>{BBAC762F-5626-4ACF-AF4D-FE729C36A99F}</td><td>INSTALLDIR</td><td>2</td><td/><td>semantria.com.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1876,12 +1882,18 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>Alchemy.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Alchemy.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>Amazon.WebServices.MechanicalTurk.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>Amazon.WebServices.MechanicalTurk.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>Repustate.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>SemantAPI.Common.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>SemantAPI.Common.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>SemantAPI.Human.Primary_output</td></row>
 		<row><td>AlwaysInstall</td><td>SemantAPI.Robot.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>SemantAPI.Robot.Primary_output1</td></row>
 		<row><td>AlwaysInstall</td><td>Semantria.Com.Primary_output</td></row>
 	</table>
 
@@ -1897,12 +1909,13 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>alchemy.primary_output</td><td>Alchemy.Primary_output</td><td>Alchemy.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Alchemy&gt;|Built</td><td>3</td><td/></row>
-		<row><td>amazon.webservices.mechanica</td><td>Amazon.WebServices.MechanicalTurk.Primary_output</td><td>Amazon.WebServices.MechanicalTurk.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Amazon.WebServices.MechanicalTurk&gt;|Built</td><td>3</td><td/></row>
-		<row><td>amazon.webservices.mechanica1</td><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output</td><td>Amazon.WebServices.MechanicalTurk.Domain.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Amazon.WebServices.MechanicalTurk.Domain&gt;|Built</td><td>3</td><td/></row>
-		<row><td>semantapi.common.primary_out</td><td>SemantAPI.Common.Primary_output</td><td>SemantAPI.Common.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SemantAPI.Common&gt;|Built</td><td>3</td><td/></row>
+		<row><td>alchemy.primary_output</td><td>Alchemy.Primary_output1</td><td>Alchemy.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Alchemy&gt;|Built</td><td>3</td><td/></row>
+		<row><td>amazon.webservices.mechanica</td><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output1</td><td>Amazon.WebServices.MechanicalTurk.Domain.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Amazon.WebServices.MechanicalTurk.Domain&gt;|Built</td><td>3</td><td/></row>
+		<row><td>amazon.webservices.mechanica1</td><td>Amazon.WebServices.MechanicalTurk.Primary_output1</td><td>Amazon.WebServices.MechanicalTurk.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Amazon.WebServices.MechanicalTurk&gt;|Built</td><td>3</td><td/></row>
+		<row><td>repustate.primary_output</td><td>Repustate.Primary_output</td><td>Repustate.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Repustate&gt;|Built</td><td>3</td><td/></row>
+		<row><td>semantapi.common.primary_out</td><td>SemantAPI.Common.Primary_output1</td><td>SemantAPI.Common.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SemantAPI.Common&gt;|Built</td><td>3</td><td/></row>
 		<row><td>semantapi.human.primary_outp</td><td>SemantAPI.Human.Primary_output</td><td>SemantAPI.Human.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SemantAPI.Human&gt;|Built</td><td>3</td><td/></row>
-		<row><td>semantapi.robot.primary_outp</td><td>SemantAPI.Robot.Primary_output</td><td>SemantAPI.Robot.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SemantAPI.Robot&gt;|Built</td><td>3</td><td/></row>
+		<row><td>semantapi.robot.primary_outp</td><td>SemantAPI.Robot.Primary_output1</td><td>SemantAPI.Robot.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;SemantAPI.Robot&gt;|Built</td><td>3</td><td/></row>
 		<row><td>semantria.com.primary_output</td><td>Semantria.Com.Primary_output</td><td>Semantria.Com.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;Semantria.Com&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2161,13 +2174,19 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>Alchemy.Primary_output</td><td/><td/><td>_A11B5501_05BD_4DFC_A606_0F46DB4B7636_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Alchemy.Primary_output1</td><td/><td/><td>_D89F92EB_2999_4CDD_B963_375FA163E1A9_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output</td><td/><td/><td>_E04B1712_6E6D_4A05_96BD_516278D1F48B_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Amazon.WebServices.MechanicalTurk.Domain.Primary_output1</td><td/><td/><td>_27CB512C_3CC5_44EC_82CD_52D096ECC14D_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>Amazon.WebServices.MechanicalTurk.Primary_output</td><td/><td/><td>_12C6C32D_C6DC_4332_9D11_96ADBFFDBC88_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Amazon.WebServices.MechanicalTurk.Primary_output1</td><td/><td/><td>_29A8DFE0_9759_40B0_B280_30DEB74A3403_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_9F4B2AE9_FFF0_459C_BDEC_D9664A5FEB0F_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Repustate.Primary_output</td><td/><td/><td>_06419D2F_71DE_42CC_B955_0CF94C94156B_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SemantAPI.Common.Primary_output</td><td/><td/><td>_60DE9C7C_CBC6_4C18_8349_095F18219A4C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SemantAPI.Common.Primary_output1</td><td/><td/><td>_AB9AD1D1_6DBC_4AFB_9FC2_91455DAF80A4_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SemantAPI.Human.Primary_output</td><td/><td/><td>_93DEB462_B245_49FE_A9B6_F61DD7235D10_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>SemantAPI.Robot.Primary_output</td><td/><td/><td>_03C2DF0E_47A9_45B0_A6B8_CD4048DB95C9_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Semantria.Com.Primary_output</td><td/><td/><td>_1435B5B2_DE29_40B0_B77A_368903FCC820_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>SemantAPI.Robot.Primary_output1</td><td/><td/><td>_8E4B8FBB_1BE0_4A9C_B04E_0009ED31ADD7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Semantria.Com.Primary_output</td><td/><td/><td>_A5EED789_7A73_40C7_A3A2_0C81ED3C2159_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2488,6 +2507,7 @@
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
+		<row><td>Repustate</td><td>Repustate\Repustate.csproj</td><td/><td>2</td></row>
 		<row><td>SemantAPI.Common</td><td>SemantAPI.Common\SemantAPI.Common.csproj</td><td/><td>2</td></row>
 		<row><td>SemantAPI.Human</td><td>SemantAPI.Human\SemantAPI.Human.csproj</td><td/><td>2</td></row>
 		<row><td>SemantAPI.Robot</td><td>SemantAPI.Robot\SemantAPI.Robot.csproj</td><td/><td>2</td></row>
@@ -4537,7 +4557,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]SemantAPI.Robot.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{21C6E67A-8C7F-4680-AD16-7E679D89F6AA}</td><td/></row>
 		<row><td>ProductName</td><td>SemantAPI</td><td/></row>
-		<row><td>ProductVersion</td><td>1.0.1.82</td><td/></row>
+		<row><td>ProductVersion</td><td>1.1.3.97</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

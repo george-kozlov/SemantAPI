@@ -1,9 +1,11 @@
-﻿// <copyright file="Form.cs" company="13th Parish">
-// Copyright (c) 13th Parish 2013 All Rights Reserved
-// </copyright>
-// <author>George Kozlov (george.kozlov@outlook.com)</author>
-// <date>03/30/2013</date>
-// <summary>SemantriaExecutor class</summary>
+﻿//
+// SemantAPI.Robot, SemantAPI.Human
+// Copyright (C) 2013 George Kozlov
+// These programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation. either version 3 of the License, or any later version.
+// These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
+// For further questions or inquiries, please contact semantapi (at) gmail (dot) com
+//
 
 using System;
 using System.Collections.Generic;
@@ -26,16 +28,16 @@ namespace SemantAPI.Common.Executors
 		IList<string> _languages = null;
 
 		#endregion
-
+        
 		#region Constructor
 
 		public SemantriaExecutor()
 		{
-			_languages = new List<string>() { "English", "French", "Spanish", "German", "Portuguese" };
+			_languages = new List<string>() { "English", "French", "Spanish", "German", "Portuguese", "Chinese" };
 		}
 
 		#endregion
-
+        
 		#region Private methods
 
 		private List<Document> GetSourceData(Dictionary<string, ResultSet> results, int charactersLimit)
@@ -161,7 +163,7 @@ namespace SemantAPI.Common.Executors
 
 						Console.WriteLine("\tSemantria: Subscrition object has been obtained. Execution time is: {0} ms", time.TotalMilliseconds);
 					}
-					else
+                    else
 						subscription = session.GetSubscription();
 
 					int docLimit = subscription.BasicSettings.CharactersLimit;
@@ -200,7 +202,7 @@ namespace SemantAPI.Common.Executors
                             List<Document> docs = documents.GetRange(index, batchSize);
                             foreach (Document doc in docs)
                                 queue.Add(doc.Id, false);
-
+                            
                             execResult = session.QueueBatchOfDocuments(documents.GetRange(index, batchSize), config.ConfigId);
                         }
 
@@ -288,7 +290,7 @@ namespace SemantAPI.Common.Executors
 		{
 			return _languages.Contains(language);
 		}
-
+        
 		#endregion
 	}
 }

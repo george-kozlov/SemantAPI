@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Semantria.Com")]
-[assembly: AssemblyDescription("Semantria API wrapper")]
+[assembly: AssemblyDescription("Semantria SDK")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Postindustria")]
-[assembly: AssemblyProduct("Semantria wrapper")]
-[assembly: AssemblyCopyright("Copyright Postindustria© 2011")]
+[assembly: AssemblyCompany("Semantria")]
+[assembly: AssemblyProduct("Semantria SDK")]
+[assembly: AssemblyCopyright("Copyright © Semantria, LLC 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.0.71")]
-[assembly: AssemblyFileVersion("3.0.71")]
+[assembly: AssemblyVersion("3.5.77")]
+[assembly: AssemblyFileVersion("3.5.77")]

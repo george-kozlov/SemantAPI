@@ -18,7 +18,14 @@ namespace Semantria.Com.Mapping.Configuration
         [DataMember(Name = "type")]
         [XmlElementAttribute("type")]
         public string Type { get; set; }
-    }
+
+		[DataMember(Name = "label")]
+		[XmlElementAttribute("label")]
+		public string Label { get; set; }
+
+        [DataMember(Name = "normalized")]
+        [XmlElementAttribute("normalized")]
+        public string Normalized { get; set; }    }
 }
 
 namespace Semantria.Com.Mapping.Configuration.Stub

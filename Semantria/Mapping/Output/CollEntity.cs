@@ -13,6 +13,10 @@ namespace Semantria.Com.Mapping.Output
         [XmlElementAttribute("title")]
         public string Title { get; set; }
 
+		[DataMember(Name = "label")]
+		[XmlElementAttribute("label")]
+		public string Label { get; set; }
+
         [DataMember(Name = "type")]
         [XmlElementAttribute("type")]
         public string Type { get; set; }
@@ -36,5 +40,10 @@ namespace Semantria.Com.Mapping.Output
         [DataMember(Name = "positive_count")]
         [XmlElementAttribute("positive_count")]
         public int PositiveCount { get; set; }
+
+        [DataMember(Name = "mentions")]
+        [XmlArrayAttribute("mentions")]
+        [XmlArrayItemAttribute("mention", typeof(CollMention))]
+        public List<CollMention> Mentions { get; set; }
     }
 }

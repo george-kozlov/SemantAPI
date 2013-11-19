@@ -19,8 +19,8 @@ namespace Semantria.Com
             _consumerSecret = consumerSecret;
             _appName = appName;
             _useCompression = useCompression;
-            
-            //TODO OD: Code must be commented in production version
+
+			//This option need to beuncommented to prevent verification of SSL certificate.
             //ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => true;
         }
 
@@ -103,7 +103,6 @@ namespace Semantria.Com
             webRequest.Method = method.ToString();
             webRequest.Credentials = CredentialCache.DefaultCredentials;
 
-            webRequest.Headers.Add("x-api-version", "3.0");
             webRequest.Headers.Add("x-app-name", _appName);
             webRequest.Headers.Add("Authorization", authheader);
             if (_useCompression == true)
@@ -386,7 +385,7 @@ namespace Semantria.Com
 
         private UInt64 NextUInt64()
         {
-            var bytes = new byte[sizeof(UInt64)];
+            byte[] bytes = new byte[sizeof(UInt64)];
             RNGCryptoServiceProvider gen = new RNGCryptoServiceProvider();
             gen.GetBytes(bytes);
             return BitConverter.ToUInt64(bytes, 0);

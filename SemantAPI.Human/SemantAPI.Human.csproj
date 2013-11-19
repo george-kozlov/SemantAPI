@@ -35,6 +35,10 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Semantria.Com, Version=3.5.77.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Semantria.Com.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -87,16 +91,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="SentimentTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SemantAPI.Common\SemantAPI.Common.csproj">
       <Project>{5377eb13-7142-4bd6-a4a1-9594c563fe3d}</Project>
       <Name>SemantAPI.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="icon.ico" />
-    <Content Include="SentimentTemplate.xml" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(ProjectDir)\SemantAPI.Human Debug.bat" "$(TargetDir)"
