@@ -144,40 +144,36 @@ namespace SemantAPI.Common.Executors
             Uri url;
             StringBuilder sb;
             HttpWebRequest connection = null;
-            try
+
+            // create connection
+            url = new Uri(targetURL);
+            connection = (HttpWebRequest)HttpWebRequest.Create(url);
+            connection.Method = "POST";
+            connection.ContentType = "application/x-www-form-urlencoded";
+            connection.Headers.Add("X-Mashape-Authorization", key);
+
+            byte[] byteArray = Encoding.UTF8.GetBytes(urlParameters);
+            connection.ContentLength = byteArray.Length;
+            Stream dataStream = connection.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+
+            WebResponse response = connection.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+
+            sb = new StringBuilder();
+            string line;
+
+            while ((line = reader.ReadLine()) != null)
             {
-                // create connection
-                url = new Uri(targetURL);
-                connection = (HttpWebRequest)HttpWebRequest.Create(url);
-                connection.Method = "POST";
-                connection.ContentType = "application/x-www-form-urlencoded";
-                connection.Headers.Add("X-Mashape-Authorization", key);
-
-                byte[] byteArray = Encoding.UTF8.GetBytes(urlParameters);
-                connection.ContentLength = byteArray.Length;
-                Stream dataStream = connection.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
-
-                WebResponse response = connection.GetResponse();
-                dataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-
-                sb = new StringBuilder();
-                string line;
-
-                while ((line = reader.ReadLine()) != null)
-                {
-                    sb.Append(line);
-                    sb.Append('\r');
-                }
-
-                reader.Close();
-                dataStream.Close();
-                response.Close();
-
+                sb.Append(line);
+                sb.Append('\r');
             }
-            catch (Exception e){return null;}
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();
 
             return sb.ToString();
         }

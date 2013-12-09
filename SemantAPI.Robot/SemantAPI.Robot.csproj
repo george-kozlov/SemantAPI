@@ -36,10 +36,6 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Semantria.Com, Version=3.0.71.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Semantria.Com.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -103,6 +99,10 @@
     <ProjectReference Include="..\SemantAPI.Common\SemantAPI.Common.csproj">
       <Project>{5377eb13-7142-4bd6-a4a1-9594c563fe3d}</Project>
       <Name>SemantAPI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Semantria\Semantria.Com.csproj">
+      <Project>{e942ab83-da93-4b16-a826-ff3993b47329}</Project>
+      <Name>Semantria.Com</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

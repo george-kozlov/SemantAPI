@@ -300,6 +300,9 @@ namespace SemantAPI.Robot
                             continue;
 
                         string text = row[row.Count - 1];
+                        if (text.Length > cutBy)
+                            text = text.Substring(0, cutBy);
+
                         _documents.Add(Guid.NewGuid().ToString(), new ResultSet(text));
                         Application.DoEvents();
                     }
@@ -651,7 +654,15 @@ namespace SemantAPI.Robot
 				ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
 				{
 					WriteDebugInfo("Running the dedicated thread for Semantria context serving...");
-					semExecutor.Execute(semContext);
+
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        semExecutor.Execute(semContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Semantria thread execution time: {0} milliseconds.", time.TotalMilliseconds);
 				}), null);
 			}
 
@@ -669,7 +680,15 @@ namespace SemantAPI.Robot
 				ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
 				{
 					WriteDebugInfo("Running the dedicated thread for Alchemy context serving...");
-					alcExecutor.Execute(alcContext);
+
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        alcExecutor.Execute(alcContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Alchemy thread execution time: {0} milliseconds.", time.TotalMilliseconds);
 				}), null);
 			}
 
@@ -684,26 +703,19 @@ namespace SemantAPI.Robot
                 if (UseDebugMode && Benchmark.Contains("Repustate"))
                     rsContext.UseDebugMode = true;
                 RepustateExecutor rsExecutor = new RepustateExecutor();
-                /*
-                //Check if dropdown selected language is supported?
-                bool trial = rsExecutor.Check_currentLang(cbLanguage.Text);
-
-                //If selected language is not supported then test remianing languages
-                //and if one of remaining language is supported, means user using trial credendials
-                //(because repustate trial account supports only one configured language at a time)
-                if (trial == false)
-                {
-                    if (rsExecutor.Check_otherLangs(cbLanguage.Text))
-                        trial = true;
-                }
-
-                //Show warning msg and stop repustate here
-                MessageBox.Show("Trial Error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);*/
+                
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
                 {
                     WriteDebugInfo("Running the dedicated thread for Repustate context serving...");
-                    rsExecutor.Execute(rsContext);
 
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        rsExecutor.Execute(rsContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Repustate thread execution time: {0} milliseconds.", time.TotalMilliseconds);
                 }), null);
             }
 
@@ -723,7 +735,15 @@ namespace SemantAPI.Robot
 				ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
 				{
 					WriteDebugInfo("Running the dedicated thread for Chatterbox context serving...");
-					cbExecutor.Execute(cbContext);
+
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        cbExecutor.Execute(cbContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Chatterbox thread execution time: {0} milliseconds.", time.TotalMilliseconds);
 				}), null);
 			}
 
@@ -743,7 +763,15 @@ namespace SemantAPI.Robot
 				ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
 				{
 					WriteDebugInfo("Running the dedicated thread for Viralheat context serving...");
-					vhExecutor.Execute(vhContext);
+
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        vhExecutor.Execute(vhContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Viralheat thread execution time: {0} milliseconds.", time.TotalMilliseconds);
 				}), null);
 			}
 
@@ -765,7 +793,15 @@ namespace SemantAPI.Robot
 				ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
 				{
 					WriteDebugInfo("Running the dedicated thread for Bitext context serving...");
-					btExecutor.Execute(btContext);
+
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        btExecutor.Execute(btContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Bitext thread execution time: {0} milliseconds.", time.TotalMilliseconds);
 				}), null);
 			}
 
@@ -784,7 +820,15 @@ namespace SemantAPI.Robot
                 ThreadPool.QueueUserWorkItem(new WaitCallback(delegate(object obj)
                 {
                     WriteDebugInfo("Running the dedicated thread for Skyttle context serving...");
-                    skExecutor.Execute(skContext);
+
+                    TimeSpan time = TimeSpan.Zero;
+                    BenchmarkHelper.Invoke(new InvokeBenchmarkHandler(delegate(object state)
+                    {
+                        skExecutor.Execute(skContext);
+                        return null;
+                    }), null, out time);
+
+                    WriteDebugInfo("Skyttle thread execution time: {0} milliseconds.", time.TotalMilliseconds);
                 }), null);
             }
 		}
