@@ -4557,7 +4557,7 @@ RABWAEQALQA1AAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]SemantAPI.Robot.Primary output</td><td/></row>
 		<row><td>ProductCode</td><td>{21C6E67A-8C7F-4680-AD16-7E679D89F6AA}</td><td/></row>
 		<row><td>ProductName</td><td>SemantAPI</td><td/></row>
-		<row><td>ProductVersion</td><td>1.1.3.97</td><td/></row>
+		<row><td>ProductVersion</td><td>1.1.3.98</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

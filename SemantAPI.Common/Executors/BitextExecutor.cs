@@ -1,6 +1,6 @@
 ﻿//
 // SemantAPI.Robot, SemantAPI.Human
-// Copyright (C) 2013 George Kozlov
+// Copyright (C) 2014 George Kozlov
 // These programs are free software: you can redistribute them and/or modify them under the terms of the GNU General Public License as published by the Free Software Foundation. either version 3 of the License, or any later version.
 // These programs are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
@@ -184,11 +184,12 @@ namespace SemantAPI.Common.Executors
 						using (StreamReader reader = new StreamReader(response.GetResponseStream()))
 						{
 							string result = reader.ReadToEnd();
-							result = result.Replace("\r\n", string.Empty)
-								.Replace("\r", string.Empty)
-								.Replace("\n", string.Empty)
-								.Replace(">\"", ">")
-								.Replace("\"<", "<");
+                            result = result.Replace("\r\n", string.Empty)
+                                .Replace("\r", string.Empty)
+                                .Replace("\n", string.Empty)
+                                .Replace(">\"", ">")
+                                .Replace("\"<", "<")
+                                .Replace("&", "&amp;");
 
 							Regex regex = new Regex(@"(?<=\bencoding="")[^""]*");
 							Match match = regex.Match(result);
